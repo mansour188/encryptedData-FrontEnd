@@ -1,0 +1,45 @@
+
+<div class="body">
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true" [(ngModel)]="isChecked">
+
+			<div class="signup">
+                
+				<form  #myForm="ngForm" (ngSubmit)="hendelSignUp($event)">
+                    <label for="chk" aria-hidden="true">Sign up</label>
+					<div class="row">
+                        <div class="col">
+                            <input type="text" [(ngModel)]="sginUpData.firstName" name="firstName" placeholder="firstName" required>
+                    
+                        </div>
+                        <div class="col">
+                            <input type="text" name="lastName" [(ngModel)]="sginUpData.lastName" placeholder="lastName" required>
+                    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" >
+                            <input type="text" name="phone" [(ngModel)]="sginUpData.phone" placeholder="phone" required>                    
+                        </div>
+                        <div class="col">
+                            <input type="text" name="post" placeholder="post"  [(ngModel)]="sginUpData.post"  required>                    
+                        </div>
+                    </div>
+					<input type="email" name="email" placeholder="Email" [(ngModel)]="sginUpData.email"  required>
+                    
+                    
+					<input type="password" name="password" placeholder="Password" required="" [(ngModel)]="sginUpData.password" required>
+					<button [disabled]="myForm.invalid" class="signup-button" type="submit">Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form  #myForm1="ngForm" (ngSubmit)="hendelSignIn($event)">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" [(ngModel)]="sginInData.email" placeholder="Email" required="">
+					<input type="password" name="password" [(ngModel)]="sginInData.password" placeholder="Password" required="">
+					<button type="submit" [disabled]="myForm1.invalid" class="signup-button">Login</button>
+				</form>
+			</div>
+	</div>
+</div>
