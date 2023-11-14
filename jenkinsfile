@@ -46,7 +46,7 @@ pipeline {
         stage('Post-Build Actions') {
             steps {
                      mail bcc: '',
-                     body: "hi team this result of pipeline Build URL:( ${env.BUILD_URL})  Git Commit: ${(env.GIT_COMMIT})" ,
+                     body: "hi team this result of pipeline Build URL:( ${env.BUILD_URL})  Git Commit: ${env.GIT_COMMIT}" ,
                        cc: '', from: '', replyTo: '',
                        subject: "Jenkins Build ${env.JOB_NAME} #${env.BUILD_NUMBER}" , 
                         to: 'benahmedmansour89@gmail.com'
