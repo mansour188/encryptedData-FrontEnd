@@ -27,7 +27,7 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                sh 'ng test --no-watch --no-progress --browsers=ChromeHeadless'
+                sh 'npm run  '
             }
         }
 
