@@ -8,12 +8,15 @@ import { RoleGuard } from './services/auth-guard.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: 'home',
     pathMatch: 'full' // Redirect only if the path is empty (i.e., the root URL)
   },
+ 
   {path:"signIn",component:SignInComponent},
   {path:"home",component:HomeComponent,canActivate: [RoleGuard], data: { requiredRole: 'USER' }},
-  {path:"admin",component:AdminComponent,canActivate: [RoleGuard], data: { requiredRole: 'RESPONSABLE' }}
+  {path:"admin",component:AdminComponent,canActivate: [RoleGuard], data: { requiredRole: 'RESPONSABLE' }},
+  { path: '**', redirectTo: 'signIn' } 
+
 ];
 
 @NgModule({

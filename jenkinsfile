@@ -1,0 +1,56 @@
+pipeline {
+    agent any
+
+ 
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Unit Tests') {
+            steps {
+                sh 'npm run test'
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts 'dist/**/*'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+               
+            }
+        }
+
+        stage('Post-Build Actions') {
+            steps {
+                
+            }
+        }
+    }
+
+    post {
+        always {
+          
+            cleanWs()
+        }
+    }
+}

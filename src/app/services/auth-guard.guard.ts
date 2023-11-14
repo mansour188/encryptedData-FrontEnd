@@ -7,14 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
-  constructor(private jwtHelper: JwtHelperService,private route:Router) {}
+  constructor(private jwtHelper: JwtHelperService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-
     const token = localStorage.getItem('token');
 
     if (token && !this.jwtHelper.isTokenExpired(token)) {
@@ -24,27 +22,17 @@ export class RoleGuard implements CanActivate {
 
       if (role === requiredRole) {
         return true;
-      }else {
-        
+      } else {
         if (role === 'USER') {
-          this.route.navigate(['home']); 
+          this.router.navigate(['home']);
         } else if (role === 'RESPONSABLE') {
-
-          this.route.navigate(['admin']); 
+          this.router.navigate(['admin']);
         }
       }
-      
-    
-     
-      
-    }
-    if (!token || this.jwtHelper.isTokenExpired(token)){
-      this.route.navigate(['sinIn']);
-
-
+    } else {
+      this.router.navigate(['signIn']);
     }
 
-
-    return false; 
+    return false;
   }
 }
