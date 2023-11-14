@@ -42,7 +42,7 @@ pipeline {
 
         stage('Post-Build Actions') {
             steps {
-                
+                echo "Post-Build Actions"
             }
         }
     }
