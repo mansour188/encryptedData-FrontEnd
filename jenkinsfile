@@ -45,7 +45,7 @@ stage('Deploy') {
 
             withCredentials([sshUserPrivateKey(credentialsId: 'ec2', keyFileVariable: 'key', usernameVariable: 'username')]) {
                 // Copy artifacts to remote host using scp
-                sh "scp -r -o StrictHostKeyChecking=no -i $key dist/* ${remoteServer}:${remotePath}"
+                sh "scp -r -o StrictHostKeyChecking=no -i $key dist/app/* ${remoteServer}:${remotePath}"
 
                 // Restart httpd
                 sh "ssh -o StrictHostKeyChecking=no -i $key ${remoteServer} 'sudo systemctl restart httpd'"
