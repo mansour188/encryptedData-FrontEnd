@@ -37,11 +37,23 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-               echo "deploy"
+stage('Deploy') {
+    steps {
+        script {
+            def remoteServer = 'ec2-user@172.31.27.194'
+            def remotePath = '/var/www/html/'
+
+            withCredentials([sshUserPrivateKey(credentialsId: 'ec2', keyFileVariable: 'key', usernameVariable: 'username')]) {
+                // Copy artifacts to remote host using scp
+                sh "scp -r -o StrictHostKeyChecking=no -i $key dist/* ${remoteServer}:${remotePath}"
+
+                // Restart httpd
+                sh "ssh -o StrictHostKeyChecking=no -i $key ${remoteServer} 'sudo systemctl restart httpd'"
             }
         }
+    }
+}
+
 
         stage('Post-Build Actions') {
             steps {
