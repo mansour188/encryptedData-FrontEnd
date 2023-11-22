@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SignInResponce } from '../models/sign-in-responce.model';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private base="http://localhost:3000/"
+  private base=environment.apiUrl;
   constructor(private http:HttpClient) { }
   signUp=(user:any)=>{
     return this.http.post(this.base+"signup",user)  }

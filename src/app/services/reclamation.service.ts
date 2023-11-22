@@ -1,15 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReclamationService {
   
+  private url=environment.apiUrl;
 
-  private base="http://localhost:3000/reclamations/"
-  private  base1="http://localhost:3000/add/"
+  private base=this.url+"reclamations/"
+  private  base1=this.url+"add/"
   constructor(private http:HttpClient) { }
   getReclamationById=()=>{
     const userId=localStorage.getItem("userId")

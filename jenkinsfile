@@ -21,7 +21,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build:prod
+'
             }
         }
 
@@ -46,7 +47,7 @@ pipeline {
         stage('Post-Build Actions') {
             steps {
                      mail bcc: '',
-                     body: "hi team this result of pipeline Build URL:( ${env.BUILD_URL})  Git Commit: ${env.GIT_COMMIT}" ,
+                     body: "hi team this result of <b>pipeline Build URL</b>:( ${env.BUILD_URL})  <b>Git Commit</b>: ${env.GIT_COMMIT} <b>the result of build</b> :${currentBuild.result}" ,
                        cc: '', from: '', replyTo: '',
                        subject: "Jenkins Build ${env.JOB_NAME} #${env.BUILD_NUMBER}" , 
                         to: 'benahmedmansour89@gmail.com'
