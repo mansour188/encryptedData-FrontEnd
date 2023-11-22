@@ -71,6 +71,7 @@ export class SignInComponent {
 
       },
       error:(err)=>{
+        console.log(err)
         this.toastr.error("check your email or password please","Unauthorized")
 
       }
