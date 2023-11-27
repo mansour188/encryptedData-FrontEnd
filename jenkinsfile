@@ -56,6 +56,7 @@ stage('Deploy') {
 
 
         stage('Post-Build Actions') {
+            
             steps {
                      mail bcc: '',
                      body: "hi team this result of <b>pipeline Build URL</b>:( ${env.BUILD_URL})  <b>Git Commit</b>: ${env.GIT_COMMIT} <b>the result of build</b> :${currentBuild.result}" ,
@@ -70,6 +71,8 @@ stage('Deploy') {
         always {
           
             cleanWs()
+
+
             
 
         }
